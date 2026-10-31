@@ -53,7 +53,8 @@ int main(){
         int status = checkWin(board);
         // 1 means win , -1 means draw 
         if(status == 1){
-            printf("Game Over ! Player %d has WON .\n",player);
+            int winner = (player == 1) ? 2:1;
+            printf("Game Over ! Player %d has WON .\n",winner);
             break;
         } else if(status == -1){
             printf("It's a DRAW .\n");
