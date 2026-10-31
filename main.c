@@ -32,7 +32,7 @@ int checkWin(char board[]){
 
     //checkDraw
     for(int i=0; i<9; i++){
-        if(board[i] != 'o' || board[i] != 'x'){
+        if(board[i] != 'o' && board[i] != 'x'){
             return 0;
         }
     }
