@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 void printboard(char board[9]){
     system("cls");
@@ -32,7 +33,7 @@ int checkWin(char board[]){
 
     //checkDraw
     for(int i=0; i<9; i++){
-        if(board[i] != 'o' || board[i] != 'x'){
+        if(board[i] != 'o' && board[i] != 'x'){
             return 0;
         }
     }
@@ -41,19 +42,30 @@ int checkWin(char board[]){
 }
 
 int main(){
+    srand(time(NULL));
     char board[9] = {'1','2','3','4','5','6','7','8','9'}; //position tells player where he wants to play
 
     int player = 1;
     int position;
     char mark;
+    int gameMode;
 
+    printf("Enter 1 for Multiplayer or 2 for AI : ");
+    
+    while(scanf("%d",&gameMode) != 1 || (gameMode != 1 && gameMode != 2)){
+        printf("Invalid Mode . Enter 1 or 2 : ");
+        getchar(); //to get rid of buffer input of scanf
+    }
+
+    if(gameMode == 1){
     while(1){
         printboard(board);
 
         int status = checkWin(board);
         // 1 means win , -1 means draw 
         if(status == 1){
-            printf("Game Over ! Player %d has WON .\n",player);
+             int winner = (player == 1) ? 2:1;
+            printf("Game Over ! Player %d has WON .\n",winner);
             break;
         } else if(status == -1){
             printf("It's a DRAW .\n");
@@ -88,7 +100,14 @@ int main(){
         } else {
             player = 1;
         }
+    } } else {
+        while(1){
+            printboard(board);
+
+            int status = checkWin(board);
+        }
     }
+    
 
     return 0;
 
